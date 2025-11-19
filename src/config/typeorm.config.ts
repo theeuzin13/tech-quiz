@@ -1,16 +1,17 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { CategoryEntity } from 'src/modules/categories/entities/category.entity';
 
 export const typeOrmConfig = async (
   configService: ConfigService,
 ): Promise<TypeOrmModuleOptions> => ({
   type: 'postgres',
   host: configService.get<string>('DB_HOST') ?? 'localhost',
-  port: configService.get<number>('DB_PORT') ?? 5432,
-  username: configService.get<string>('DB_USERNAME'),
-  password: configService.get<string>('DB_PASSWORD'),
-  database: configService.get<string>('DB_NAME'),
-  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+  port: Number(configService.get('DB_PORT') ?? 5432),
+  username: String(configService.get('DB_USERNAME')),
+  password: String(configService.get('DB_PASSWORD')),
+  database: String(configService.get('DB_NAME')),
+  entities: [CategoryEntity],
   migrations: [__dirname + '/../migration/*{.ts,.js}'],
   synchronize: false,
 });
