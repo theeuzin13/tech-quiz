@@ -39,3 +39,7 @@ $ npm run test:cov
 > - npm run migration:generate --name=NomeDaMigration (criar uma migration)
 > - npm run migration:run (executar migrations)
 > - npm run migration:rever (reverter a última migration)
+
+## Generate a module
+
+> - nest g resource modules/(name module)

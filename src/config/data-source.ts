@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import 'dotenv/config';
 import { CategoryEntity } from "src/modules/categories/entities/category.entity";
+import { QuestionEntity } from "src/modules/questions/entities/question.entity";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -11,7 +12,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     synchronize: false,
     logging: false,
-    entities: [CategoryEntity],
+    entities: [CategoryEntity, QuestionEntity],
     migrations: ["src/migrations/**/*.ts"],
     subscribers: ["src/subscriber/**/*.ts"],
 });
