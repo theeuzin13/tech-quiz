@@ -23,18 +23,18 @@ export class CategoriesController {
   @Get(':uuid')
   @ApiResponse({ status: 200, description: 'The category has been successfully retrieved.' })
   findOne(@Param('uuid') uuid: string) {
-    return this.categoriesService.findOne(+uuid);
+    return this.categoriesService.findOne(uuid);
   }
 
   @Put(':uuid')
   @ApiResponse({ status: 200, description: 'The category has been successfully updated.' })
   update(@Param('uuid') uuid: string, @Body() updateCategoryDto: UpdateCategoryDto) {
-    return this.categoriesService.update(+uuid, updateCategoryDto);
+    return this.categoriesService.update(uuid, updateCategoryDto);
   }
 
   @Delete(':uuid')
   @ApiResponse({ status: 200, description: 'The category has been successfully removed.' })
   remove(@Param('uuid') uuid: string) {
-    return this.categoriesService.remove(+uuid);
+    return this.categoriesService.remove(uuid);
   }
 }
