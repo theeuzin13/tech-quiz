@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { QuestionsModule } from './modules/questions/questions.module';
+import { AlternativesModule } from './modules/alternatives/alternatives.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { QuestionsModule } from './modules/questions/questions.module';
       useFactory: typeOrmConfig,
     }),
     CategoriesModule,
-    QuestionsModule
+    QuestionsModule,
+    AlternativesModule
   ],
   controllers: [],
   providers: [],

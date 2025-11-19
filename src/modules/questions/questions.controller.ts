@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { QuestionsService } from './questions.service';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ApiResponse } from '@nestjs/swagger';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
-import { ApiResponse } from '@nestjs/swagger';
+import { QuestionsService } from './questions.service';
 
 @Controller('questions')
 export class QuestionsController {
@@ -10,7 +10,7 @@ export class QuestionsController {
 
   @Post()
   @ApiResponse({ status: 201, description: 'The question has been successfully created.' })
-  async create(@Body() createQuestionDto: CreateQuestionDto) {
+  create(@Body() createQuestionDto: CreateQuestionDto) {
     return this.questionsService.create(createQuestionDto);
   }
 
@@ -26,7 +26,7 @@ export class QuestionsController {
     return this.questionsService.findOne(uuid);
   }
 
-  @Patch(':uuid')
+  @Put(':uuid')
   @ApiResponse({ status: 200, description: 'The question has been successfully updated.' })
   update(@Param('uuid') uuid: string, @Body() updateQuestionDto: UpdateQuestionDto) {
     return this.questionsService.update(uuid, updateQuestionDto);

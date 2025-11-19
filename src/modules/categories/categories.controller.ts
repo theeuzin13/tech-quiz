@@ -10,8 +10,8 @@ export class CategoriesController {
 
   @Post()
   @ApiResponse({ status: 201, description: 'The category has been successfully created.' })
-  async create(@Body() createCategoryDto: CreateCategoryDto) {
-    return await this.categoriesService.create(createCategoryDto);
+  create(@Body() createCategoryDto: CreateCategoryDto) {
+    return this.categoriesService.create(createCategoryDto);
   }
 
   @Get()

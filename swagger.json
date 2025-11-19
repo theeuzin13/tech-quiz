@@ -111,6 +111,228 @@
           "Categories"
         ]
       }
+    },
+    "/questions": {
+      "post": {
+        "operationId": "QuestionsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateQuestionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The question has been successfully created."
+          }
+        },
+        "tags": [
+          "Questions"
+        ]
+      },
+      "get": {
+        "operationId": "QuestionsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of all questions."
+          }
+        },
+        "tags": [
+          "Questions"
+        ]
+      }
+    },
+    "/questions/{uuid}": {
+      "get": {
+        "operationId": "QuestionsController_findOne",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The question has been successfully retrieved."
+          }
+        },
+        "tags": [
+          "Questions"
+        ]
+      },
+      "put": {
+        "operationId": "QuestionsController_update",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateQuestionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The question has been successfully updated."
+          }
+        },
+        "tags": [
+          "Questions"
+        ]
+      },
+      "delete": {
+        "operationId": "QuestionsController_remove",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The question has been successfully deleted."
+          }
+        },
+        "tags": [
+          "Questions"
+        ]
+      }
+    },
+    "/alternatives": {
+      "post": {
+        "operationId": "AlternativesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAlternativeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The alternative has been successfully created."
+          }
+        },
+        "tags": [
+          "Alternatives"
+        ]
+      },
+      "get": {
+        "operationId": "AlternativesController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of all alternatives."
+          }
+        },
+        "tags": [
+          "Alternatives"
+        ]
+      }
+    },
+    "/alternatives/{uuid}": {
+      "get": {
+        "operationId": "AlternativesController_findOne",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The alternative has been successfully retrieved."
+          }
+        },
+        "tags": [
+          "Alternatives"
+        ]
+      },
+      "put": {
+        "operationId": "AlternativesController_update",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAlternativeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The alternative has been successfully updated."
+          }
+        },
+        "tags": [
+          "Alternatives"
+        ]
+      },
+      "delete": {
+        "operationId": "AlternativesController_remove",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The alternative has been successfully removed."
+          }
+        },
+        "tags": [
+          "Alternatives"
+        ]
+      }
     }
   },
   "info": {
@@ -151,6 +373,85 @@
       "UpdateCategoryDto": {
         "type": "object",
         "properties": {}
+      },
+      "CreateQuestionDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "example": "What is the capital of France?",
+            "description": "The question description"
+          },
+          "categoryId": {
+            "type": "string",
+            "example": "Geography",
+            "description": "The category of the question"
+          }
+        },
+        "required": [
+          "description",
+          "categoryId"
+        ]
+      },
+      "UpdateQuestionDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "example": "What is the capital of France?",
+            "description": "The question description"
+          },
+          "categoryId": {
+            "type": "string",
+            "example": "Geography",
+            "description": "The category of the question"
+          }
+        }
+      },
+      "CreateAlternativeDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "example": "Paris",
+            "description": "The alternative text"
+          },
+          "questionId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000",
+            "description": "The ID of the question this alternative belongs to"
+          },
+          "isCorrect": {
+            "type": "boolean",
+            "example": true,
+            "description": "Indicates whether this alternative is the correct answer"
+          }
+        },
+        "required": [
+          "text",
+          "questionId",
+          "isCorrect"
+        ]
+      },
+      "UpdateAlternativeDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "example": "Paris",
+            "description": "The alternative text"
+          },
+          "questionId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000",
+            "description": "The ID of the question this alternative belongs to"
+          },
+          "isCorrect": {
+            "type": "boolean",
+            "example": true,
+            "description": "Indicates whether this alternative is the correct answer"
+          }
+        }
       }
     }
   },

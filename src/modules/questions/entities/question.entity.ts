@@ -1,6 +1,7 @@
 import { BaseModel } from "src/common/entities/base.entity";
+import { AlternativeEntity } from "src/modules/alternatives/entities/alternative.entity";
 import { CategoryEntity } from "src/modules/categories/entities/category.entity";
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 
 @Entity({ name: "questions" })
 export class QuestionEntity extends BaseModel {
@@ -13,4 +14,7 @@ export class QuestionEntity extends BaseModel {
   @ManyToOne(() => CategoryEntity)
   @JoinColumn({ name: "category_id" })
   category: CategoryEntity;
+
+  @OneToMany(() => AlternativeEntity, (alternative) => alternative.question)
+  alternatives: AlternativeEntity[];
 }
