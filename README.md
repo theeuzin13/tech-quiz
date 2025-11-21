@@ -43,3 +43,7 @@ $ npm run test:cov
 ## Generate a module
 
 > - nest g resource modules/(name module)
+
+## Seed
+
+> - npm run seed (Rodar as seeds para DB. Obs.: Isso só funciona por conta das configs no package.json)

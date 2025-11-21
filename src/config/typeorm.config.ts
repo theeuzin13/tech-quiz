@@ -1,5 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { UserEntity } from 'src/common/entities/user.entity';
 import { AlternativeEntity } from 'src/modules/alternatives/entities/alternative.entity';
 import { CategoryEntity } from 'src/modules/categories/entities/category.entity';
 import { QuestionEntity } from 'src/modules/questions/entities/question.entity';
@@ -13,7 +14,7 @@ export const typeOrmConfig = async (
   username: String(configService.get('DB_USERNAME')),
   password: String(configService.get('DB_PASSWORD')),
   database: String(configService.get('DB_NAME')),
-  entities: [CategoryEntity, QuestionEntity, AlternativeEntity],
+  entities: [CategoryEntity, QuestionEntity, AlternativeEntity, UserEntity],
   migrations: [__dirname + '/../migration/*{.ts,.js}'],
   synchronize: false,
 });

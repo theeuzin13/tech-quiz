@@ -5,6 +5,7 @@ import { typeOrmConfig } from './config/typeorm.config';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { QuestionsModule } from './modules/questions/questions.module';
 import { AlternativesModule } from './modules/alternatives/alternatives.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { AlternativesModule } from './modules/alternatives/alternatives.module';
     }),
     CategoriesModule,
     QuestionsModule,
-    AlternativesModule
+    AlternativesModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],
