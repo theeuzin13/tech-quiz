@@ -338,9 +338,26 @@
       "post": {
         "operationId": "AuthController_login",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
         "responses": {
-          "201": {
-            "description": ""
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -466,6 +483,32 @@
             "description": "Indicates whether this alternative is the correct answer"
           }
         }
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "AuthResponseDto": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "access_token"
+        ]
       }
     }
   },
