@@ -14,10 +14,10 @@ import { AuthModule } from './modules/auth/auth.module';
       inject: [ConfigService],
       useFactory: typeOrmConfig,
     }),
+    AuthModule,
     CategoriesModule,
     QuestionsModule,
     AlternativesModule,
-    AuthModule
   ],
   controllers: [],
   providers: [],
