@@ -435,6 +435,11 @@
             "type": "string",
             "example": "Science",
             "description": "The name of the category"
+          },
+          "icon": {
+            "type": "string",
+            "example": "fa-solid fa-code",
+            "description": "The icon URL of the category"
           }
         },
         "required": [

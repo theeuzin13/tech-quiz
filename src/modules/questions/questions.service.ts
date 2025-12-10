@@ -29,7 +29,9 @@ export class QuestionsService {
 
   async findAll(): Promise<ResponseQuestionDto[]> {
     try {
-      const questions = await this.questionRepository.find();
+      const questions = await this.questionRepository.find({
+        relations: ['category'],
+      });
       return questions.map(QuestionMapper.toResponseDto);
     } catch (error) {
       throw new InternalServerErrorException('Failed to retrieve questions');

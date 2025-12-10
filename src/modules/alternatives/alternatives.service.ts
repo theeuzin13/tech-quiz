@@ -15,16 +15,9 @@ export class AlternativesService {
   ) {}
 
   async create(createAlternativeDto: CreateAlternativeDto): Promise<ResponseAlternativeDto> {
-    // try{
       const alternative = this.alternativeRepository.create(createAlternativeDto);
       await this.alternativeRepository.save(alternative);
       return AlternativeMapper.toResponseDto(alternative);
-    // } catch (error) {
-    //   if (error.code === '23505') {
-    //           throw new ConflictException('Category already exists');
-    //         }
-    //         throw new InternalServerErrorException('Failed to create category');
-    // }
   }
 
   async findAll(): Promise<ResponseAlternativeDto[]> {
@@ -75,6 +68,7 @@ export class AlternativesService {
       if (!alternative) {
         throw new NotFoundException('Alternative not found');
       }
+      await this.alternativeRepository.delete(uuid);
     } catch (error) {
       throw new InternalServerErrorException('Failed to delete alternative');
     }

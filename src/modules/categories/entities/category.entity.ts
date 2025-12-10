@@ -7,6 +7,9 @@ export class CategoryEntity extends BaseModel {
   @Column({ name: "name", nullable: false})
   name: string;
 
+  @Column({ name: "icon", nullable: true })
+  icon?: string;
+
   @OneToMany(() => QuestionEntity, question => question.category)
   questions: QuestionEntity[];
 }

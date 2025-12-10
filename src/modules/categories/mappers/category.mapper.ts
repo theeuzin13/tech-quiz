@@ -6,6 +6,7 @@ export class CategoryMapper {
     const dto = new ResponseCategoryDto();
     dto.uuid = entity.uuid;
     dto.name = entity.name;
+    dto.icon = entity.icon;
     dto.createdAt = entity.created_at;
     return dto;
   }

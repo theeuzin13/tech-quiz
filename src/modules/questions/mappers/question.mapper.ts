@@ -8,6 +8,7 @@ export class QuestionMapper {
     entity.uuid = dto.uuid;
     entity.description = dto.description;
     entity.categoryId = dto.categoryId;
+    entity.categoryName = dto.category?.name;
     entity.createdAt = dto.created_at;
     return entity;
   }

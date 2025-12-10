@@ -11,7 +11,7 @@ export class QuestionEntity extends BaseModel {
   @Column({ name: "category_id", nullable: false })
   categoryId: string;
 
-  @ManyToOne(() => CategoryEntity)
+  @ManyToOne(() => CategoryEntity, category => category.questions, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: "category_id" })
   category: CategoryEntity;
 
