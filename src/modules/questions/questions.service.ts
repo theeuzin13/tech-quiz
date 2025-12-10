@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -62,10 +62,24 @@ export class QuestionsService {
   async delete(uuid: string): Promise<void> {
     try {
       const result = await this.questionRepository.delete(uuid);
+
       if (result.affected === 0) {
         throw new NotFoundException(`Question #${uuid} not found`);
       }
+
     } catch (error) {
+
+      if (error.code === '23503') {
+        throw new BadRequestException(
+          'Não é possível excluir esta pergunta pois existem alternativas vinculadas.'
+        );
+      }
+
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+
+      console.error(error);
       throw new InternalServerErrorException('Failed to delete question');
     }
   }

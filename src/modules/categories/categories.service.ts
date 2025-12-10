@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, ConflictException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException, InternalServerErrorException, BadRequestException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,7 +12,7 @@ export class CategoriesService {
   constructor(
     @InjectRepository(CategoryEntity)
     private readonly categoryRepository: Repository<CategoryEntity>,
-  ) {}
+  ) { }
 
   async create(createCategoryDto: CreateCategoryDto): Promise<ResponseCategoryDto> {
     try {
@@ -80,11 +80,22 @@ export class CategoriesService {
       }
 
       await this.categoryRepository.delete({ uuid });
+
     } catch (error) {
+
+      if (error.code === '23503') {
+        throw new BadRequestException(
+          'Não é possível excluir esta categoria pois existem perguntas vinculadas.'
+        );
+      }
+
       if (error instanceof NotFoundException) {
         throw error;
       }
+
+      console.error(error);
       throw new InternalServerErrorException('Failed to delete category');
     }
   }
+
 }
