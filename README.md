@@ -47,3 +47,7 @@ $ npm run test:cov
 ## Seed
 
 > - npm run seed (Rodar as seeds para DB. Obs.: Isso só funciona por conta das configs no package.json)
+
+## Access application
+
+>- docker exec -it (id_container) bash
