@@ -9,7 +9,7 @@ async function bootstrap() {
   app.enableCors({
     origin: (origin, callback) => {
       const allowedOrigins = [
-        'https://techquiz.agendfy.shop',
+        'https://engsoft.agendfy.shop',
         'http://localhost:4200',
       ];
 
