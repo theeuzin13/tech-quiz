@@ -1,20 +1,19 @@
-import { AppDataSource } from 'src/config/data-source';
-import { CategoryEntity } from 'src/modules/categories/entities/category.entity';
+import { AppDataSource } from "src/config/data-source";
+import { CategoryEntity } from "src/modules/categories/entities/category.entity";
 
 export async function createCategoriesSeed() {
-  await AppDataSource.initialize();
   const categoryRepository = AppDataSource.getRepository(CategoryEntity);
 
   const categories = [
-    { name: 'Frontend', icon: 'frontend' },
-    { name: 'Backend', icon: 'backend' },
-    { name: 'Database', icon: 'database' },
-    { name: 'DevOps', icon: 'devops' },
-    { name: 'Security', icon: 'security' },
-    { name: 'Networks', icon: 'networks' },
-    { name: 'Hardware', icon: 'hardware' },
-    { name: 'Data Science', icon: 'data-science' },
-    { name: 'Artificial Intelligence', icon: 'ai' },
+    { name: "Frontend", icon: "frontend" },
+    { name: "Backend", icon: "backend" },
+    { name: "Database", icon: "database" },
+    { name: "DevOps", icon: "devops" },
+    { name: "Security", icon: "security" },
+    { name: "Networks", icon: "networks" },
+    { name: "Hardware", icon: "hardware" },
+    { name: "Data Science", icon: "data-science" },
+    { name: "Artificial Intelligence", icon: "ai" },
   ];
 
   for (const category of categories) {
@@ -28,5 +27,5 @@ export async function createCategoriesSeed() {
     }
   }
 
-  console.log('Categories seeded successfully.');
+  console.log("Categories seeded successfully.");
 }

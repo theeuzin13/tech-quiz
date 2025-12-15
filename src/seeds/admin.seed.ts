@@ -1,10 +1,8 @@
 import { UserEntity } from "src/common/entities/user.entity";
-import { DataSource } from "typeorm";
 import * as bcrypt from "bcrypt";
 import { AppDataSource } from "src/config/data-source";
 
 export async function createAdminSeed() {
-  await AppDataSource.initialize();
   const userRepository = AppDataSource.getRepository(UserEntity);
 
   const password = process.env.ADMIN_PASSWORD!;
@@ -16,7 +14,7 @@ export async function createAdminSeed() {
     const passwordHash = await bcrypt.hash(password, 10);
 
     const adminUser = userRepository.create({
-      username: username,
+      username,
       password: passwordHash,
       isAdmin: true,
     });
