@@ -10,6 +10,10 @@ export class AdminGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const req = context.switchToHttp().getRequest();
 
+    if (req.method === 'OPTIONS') {
+      return true;
+    }
+
     if (!req.user?.isAdmin) {
       throw new ForbiddenException('Access denied: Admins only');
     }
