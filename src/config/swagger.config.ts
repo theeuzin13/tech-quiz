@@ -10,7 +10,7 @@ export function setupSwagger(app: INestApplication): void {
     .setVersion("1.0")
     .addServer(
       process.env.NODE_ENV === "production"
-        ? "https://tech-quiz-api.example.com"
+        ? "https://engsoft.agendfy.shop/api"
         : "http://localhost:3000",
     )
     .addBearerAuth(
